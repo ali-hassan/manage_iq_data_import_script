@@ -14,8 +14,12 @@ require "net/http"
 
 puts "Get all columns of CSV"
 CSV.foreach(data).map do |row|
-    col_vals = row[index];
-    cat_name = col_vals.first
+  puts "Row wise #{row}********************"
+  puts "Index=#{index}*************"
+  col_vals = row[index];
+  
+  puts "col_values=**************#{ col_vals}*******************"  
+  cat_name = col_vals
 
     url = URI("https://172.31.211.137/api/categories")
     https = Net::HTTP.new(url.host, url.port)
