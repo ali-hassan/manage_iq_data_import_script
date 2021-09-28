@@ -9,8 +9,8 @@ index = 0;
 require "uri"
 require "net/http"
 
-response = https.request(request)
-puts response.read_body
+#response = https.request(request)
+#puts response.read_body
 
 puts "Get all columns of CSV"
 CSV.foreach(data).map do |row|
