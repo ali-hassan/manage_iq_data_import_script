@@ -3,12 +3,10 @@ require 'smarter_csv'
 require 'logger'
 require "byebug"
 
-data = File.open("updated_sheet_final_version.csv")
-index = 0;
 
 puts "Get all columns of CSV"
 
-CSV.foreach("updated_sheet_final_version.csv").map do |row|
+CSV.foreach("final_version_of_csv.csv").map do |row|
   puts "Row wise #{row}********************"
 
 
