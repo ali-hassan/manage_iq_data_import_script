@@ -1,5 +1,6 @@
 puts "Started Parsing"
 require 'smarter_csv'
+require 'logger'
 require "byebug"
 
 data = File.open("updated_sheet_final_version.csv")
