@@ -9,18 +9,20 @@ puts "Get all columns of xlsx"
 
 # name of file for exeample inventory, place it on same level
 
+
 xlsx = Roo::Spreadsheet.open('./inventory.xlsx')
 
 headers = Hash.new
-xlsx.row(1)[1..].each_with_index {|header,i|
+xlsx.row(1).each_with_index {|header,i|
   headers[header] = i
 }
 
-categories = xlsx.sheet(0).row(1)[1..]
+categories = xlsx.sheet(0).row(1)
 # ["Change Control ", "DA/Legacy", "Zone/VLAN", "OS Type", "OS Version", "Environment", "Host Name", "DNS Name", "Domain", "Production IP", "Management IP", "Secondary IP", "Virtual  IP", "ILO IP", "Status", "Function/Service", "Function Types", "Asset Type", "Asset Owner", "Department", "Hardware \nCategory", "Serial Number", "Manfucaturer", "Model", "TP Counter Part", "OSQ"]
 
 categories.each do |category|
-  cat_name = category
+  col_val = category
+  cat_name = category.strip
   category_id = nil
   cat_name_val = cat_name.downcase.gsub(/[^0-9A-Za-z]/, '_')
 
@@ -67,10 +69,13 @@ categories.each do |category|
       # Get the column data using the column heading.
       column_data.push(xlsx.row(row)[headers[col_val]])
     end
-    
+
     column_data.each do |val|
       tag_name = val
-      tag_name = val.downcase.gsub!(/[^0-9A-Za-z]/, '_') unless cat_name_val == "sr_no"
+      if cat_name_val == "change_control"
+        tag_name = tag_name.to_s.gsub!(/[^0-9A-Za-z]/, '_')
+      end
+      tag_name = tag_name.to_s.downcase.gsub!(/[^0-9A-Za-z]/, '_') unless cat_name_val == "sr_no" || cat_name_val == "change_control"
       puts "tag_name is=#{tag_name}*********************************************************************************"
       response = `curl -v -k -u admin:WSXQAZ@655#@! --location --request POST "https://172.31.211.137/api/categories/#{category_id}/tags" \
       --header 'Authorization: Basic YWRtaW46V1NYUUFaQDY1NSNAIQ==' \
@@ -95,7 +100,8 @@ categories.each do |category|
     end
 
     column_data.uniq.each do |val|
-
+      val_name = val
+      val_name = val.strip.downcase.gsub!(/[^0-9A-Za-z]/, '_') unless cat_name_val == "sr_no"
       puts "***************************************************************************************************************************"
       puts "category_id=#{category_id}"
       puts "****************************************************************************************************************************"
@@ -104,7 +110,7 @@ categories.each do |category|
      --header 'Authorization: Basic YWRtaW46V1NYUUFaQDY1NSNAIQ==' \
      --header 'Content-Type: text/plain' \
      --data-raw '{
-      "name" : "#{val.downcase.tr(" ", "_")}",
+      "name" : "#{val_name}",
      "description" : "#{val}"
     }'`
       response = JSON.parse(request)
@@ -116,6 +122,6 @@ categories.each do |category|
       end
     end
   end
-end   
+end
 
 puts "End Parsing"
