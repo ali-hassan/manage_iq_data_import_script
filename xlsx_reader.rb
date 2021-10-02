@@ -75,7 +75,7 @@ categories.each do |category|
       if cat_name_val == "change_control"
         tag_name = tag_name.to_s.gsub!(/[^0-9A-Za-z]/, '_')
       end
-      tag_name = tag_name.to_s.downcase.gsub!(/[^0-9A-Za-z]/, '_') unless cat_name_val == "sr_no" || cat_name_val == "change_control"
+      tag_name = tag_name.to_s.downcase.gsub(/[^0-9A-Za-z]/, '_') unless cat_name_val == "sr_no" || cat_name_val == "change_control"
       puts "tag_name is=#{tag_name}*********************************************************************************"
       response = `curl -v -k -u admin:WSXQAZ@655#@! --location --request POST "https://172.31.211.137/api/categories/#{category_id}/tags" \
       --header 'Authorization: Basic YWRtaW46V1NYUUFaQDY1NSNAIQ==' \
@@ -101,20 +101,22 @@ categories.each do |category|
 
     column_data.uniq.each do |val|
       val_name = val
-      val_name = val.strip.downcase.gsub!(/[^0-9A-Za-z]/, '_') unless cat_name_val == "sr_no"
+      val_name = val.downcase.gsub(/[^0-9A-Za-z]/, '_') unless cat_name_val == "sr_no"
       puts "***************************************************************************************************************************"
       puts "category_id=#{category_id}"
       puts "****************************************************************************************************************************"
 
       puts "*******************************************************"
-      puts "tag_name= #{val}"
+      puts "tag_name= #{val_name}"
+      puts "description= #{val}"
+
       puts "*******************************************************"
 
       response = `curl -v -k -u admin:WSXQAZ@655#@! --location --request POST "https://172.31.211.137/api/categories/#{category_id}/tags" \
      --header 'Authorization: Basic YWRtaW46V1NYUUFaQDY1NSNAIQ==' \
      --header 'Content-Type: text/plain' \
      --data-raw '{
-      "name" : "#{val.downcase}",
+      "name" : "#{val_name}",
      "description" : "#{val}"
     }'`
       response = JSON.parse(response)
