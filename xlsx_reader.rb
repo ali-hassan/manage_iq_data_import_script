@@ -9,7 +9,6 @@ puts "Get all columns of xlsx"
 
 # name of file for exeample inventory, place it on same level
 
-
 xlsx = Roo::Spreadsheet.open('./inventory.xlsx')
 
 headers = Hash.new
@@ -113,9 +112,9 @@ categories.each do |category|
       "name" : "#{val_name}",
      "description" : "#{val}"
     }'`
-      response = JSON.parse(request)
+      response = JSON.parse(response)
       puts "********************************************************************************************************************************"
-      puts "response of tag is=#{response}"
+      puts "response of tag is=#{response}          ****************************************"
       if response["error"]
         puts "Tag creation error is below:"
         puts response[:error]
