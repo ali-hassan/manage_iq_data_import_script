@@ -69,6 +69,7 @@ categories.each do |category|
       column_data.push(xlsx.row(row)[headers[col_val]])
     end
 
+
     column_data.each do |val|
       tag_name = val
       if cat_name_val == "change_control"
@@ -105,11 +106,15 @@ categories.each do |category|
       puts "category_id=#{category_id}"
       puts "****************************************************************************************************************************"
 
+      puts "*******************************************************"
+      puts "tag_name= #{val}"
+      puts "*******************************************************"
+
       response = `curl -v -k -u admin:WSXQAZ@655#@! --location --request POST "https://172.31.211.137/api/categories/#{category_id}/tags" \
      --header 'Authorization: Basic YWRtaW46V1NYUUFaQDY1NSNAIQ==' \
      --header 'Content-Type: text/plain' \
      --data-raw '{
-      "name" : "#{val_name}",
+      "name" : "#{val.downcase}",
      "description" : "#{val}"
     }'`
       response = JSON.parse(response)
