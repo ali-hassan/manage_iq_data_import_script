@@ -9,7 +9,7 @@ puts "Get all columns of xlsx"
 
 # name of file for exeample inventory, place it on same level
 
-xlsx = Roo::Spreadsheet.open('./inventory.xlsx')
+xlsx = Roo::Spreadsheet.open('./hostnames.xlsx')
 
 headers = Hash.new
 xlsx.row(1).each_with_index {|header,i|
