@@ -3,6 +3,7 @@ require 'smarter_csv'
 require 'logger'
 require "byebug"
 require "roo"
+require 'json'
 
 
 puts "Get all columns of xlsx"
