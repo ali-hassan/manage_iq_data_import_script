@@ -1,5 +1,4 @@
 puts "Started Parsing"
-require 'smarter_csv'
 require 'logger'
 require "byebug"
 require "roo"
