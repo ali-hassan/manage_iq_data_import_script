@@ -2,13 +2,12 @@ puts "Started Parsing"
 require 'smarter_csv'
 require 'logger'
 require "byebug"
-
+require 'json'
 
 puts "Get all columns of CSV"
 
 CSV.foreach("final_version_of_csv.csv").map do |row|
   puts "Row wise #{row}********************"
-
 
   row.each do |col_val|
     cat_name = col_val
@@ -92,10 +91,7 @@ CSV.foreach("final_version_of_csv.csv").map do |row|
           puts response[:error]
         end
       end
-
     end
-
   end
 end
-
 puts "End Parsing"
