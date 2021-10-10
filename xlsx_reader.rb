@@ -10,6 +10,7 @@ puts "Get all columns of xlsx"
 # name of file for exeample inventory, place it on same level
 
 xlsx = Roo::Spreadsheet.open('./hostnames.xlsx')
+URL = "https://172.31.211.137"
 
 headers = Hash.new
 xlsx.row(1).each_with_index {|header,i|
@@ -25,7 +26,7 @@ categories.each do |category|
   category_id = nil
   cat_name_val = cat_name.downcase.gsub(/[^0-9A-Za-z]/, '_')
 
-  response = `curl -v -k -u admin:WSXQAZ@655#@! --location --request POST 'https://172.31.211.137/api/categories' \
+  response = `curl -v -k -u admin:WSXQAZ@655#@! --location --request POST "#{URL}/api/categories" \
     --header 'Authorization: Basic YWRtaW46V1NYUUFaQDY1NSNAIQ==' \
     --header 'Content-Type: text/plain'\
     --data-raw '{
@@ -41,7 +42,7 @@ categories.each do |category|
 
 
   if is_error
-    all_categories = `curl -v -k -u admin:WSXQAZ@655#@! --location --request GET 'https://172.31.211.137/api/categories'`
+    all_categories = `curl -v -k -u admin:WSXQAZ@655#@! --location --request GET "#{URL}/api/categories"`
     puts "categories registered alread"
     puts "searching appropiate category"
     categories = JSON.parse(all_categories)
@@ -77,7 +78,7 @@ categories.each do |category|
       end
       tag_name = tag_name.to_s.downcase.gsub(/[^0-9A-Za-z]/, '_') unless cat_name_val == "sr_no" || cat_name_val == "change_control"
       puts "tag_name is=#{tag_name}*********************************************************************************"
-      response = `curl -v -k -u admin:WSXQAZ@655#@! --location --request POST "https://172.31.211.137/api/categories/#{category_id}/tags" \
+      response = `curl -v -k -u admin:WSXQAZ@655#@! --location --request POST "#{URL}/api/categories/#{category_id}/tags" \
       --header 'Authorization: Basic YWRtaW46V1NYUUFaQDY1NSNAIQ==' \
       --header 'Content-Type: text/plain' \
       --data-raw '{
@@ -112,7 +113,7 @@ categories.each do |category|
 
       puts "*******************************************************"
 
-      response = `curl -v -k -u admin:WSXQAZ@655#@! --location --request POST "https://172.31.211.137/api/categories/#{category_id}/tags" \
+      response = `curl -v -k -u admin:WSXQAZ@655#@! --location --request POST "#{URL}/api/categories/#{category_id}/tags" \
      --header 'Authorization: Basic YWRtaW46V1NYUUFaQDY1NSNAIQ==' \
      --header 'Content-Type: text/plain' \
      --data-raw '{
