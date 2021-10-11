@@ -32,7 +32,7 @@ categories.each do |category|
     --data-raw '{
     "name" : "#{cat_name_val}",
     "description" : "#{cat_name}"
-    }'`
+  }'`
   response = JSON.parse(response)
   puts "response is pasted here *******************************************************"
   puts "response is = #{response}"
@@ -114,12 +114,12 @@ categories.each do |category|
       puts "*******************************************************"
 
       response = `curl -v -k -u admin:WSXQAZ@655#@! --location --request POST "#{URL}/api/categories/#{category_id}/tags" \
-     --header 'Authorization: Basic YWRtaW46V1NYUUFaQDY1NSNAIQ==' \
-     --header 'Content-Type: text/plain' \
-     --data-raw '{
-      "name" : "#{val_name}",
-     "description" : "#{val}"
-    }'`
+       --header 'Authorization: Basic YWRtaW46V1NYUUFaQDY1NSNAIQ==' \
+       --header 'Content-Type: text/plain' \
+       --data-raw '{
+        "name" : "#{val_name}",
+       "description" : "#{val}"
+      }'`
       response = JSON.parse(response)
       puts "********************************************************************************************************************************"
       puts "response of tag is=#{response}          ****************************************"
