@@ -103,9 +103,7 @@ categories.each do |category|
     column_data.uniq.each do |val|
       val_name = val
       val_name = val.downcase.gsub(/[^0-9A-Za-z]/, '_') unless cat_name_val == "sr_no"
-      puts "***************************************************************************************************************************"
-      puts "category_id=#{category_id}"
-      puts "***************************************************************************************************************************"
+      puts "category_id=#{category_id}***************************************************************************************************************************"
 
       puts "*******************************************************"
       puts "tag_name= #{val_name}"
@@ -121,7 +119,6 @@ categories.each do |category|
        "description" : "#{val}"
       }'`
       response = JSON.parse(response)
-      puts "********************************************************************************************************************************"
       puts "response of tag is=#{response}          ****************************************"
       if response["error"]
         puts "Tag creation error is below:"
