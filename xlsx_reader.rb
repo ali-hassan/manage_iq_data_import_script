@@ -7,7 +7,7 @@ require 'json'
 
 puts "Get all columns of xlsx"
 
-# name of file for exeample inventory, place it on same level
+# name of file for example inventory, place it on same level
 
 xlsx = Roo::Spreadsheet.open('./hostnames.xlsx')
 URL = "https://172.31.211.137"
@@ -104,13 +104,8 @@ categories.each do |category|
       val_name = val
       val_name = val.downcase.gsub(/[^0-9A-Za-z]/, '_') unless cat_name_val == "sr_no"
       puts "category_id=#{category_id}***************************************************************************************************************************"
-
-      puts "*******************************************************"
       puts "tag_name= #{val_name}"
       puts "description= #{val}"
-
-      puts "*******************************************************"
-
       response = `curl -v -k -u admin:WSXQAZ@655#@! --location --request POST "#{URL}/api/categories/#{category_id}/tags" \
        --header 'Authorization: Basic YWRtaW46V1NYUUFaQDY1NSNAIQ==' \
        --header 'Content-Type: text/plain' \
