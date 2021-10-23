@@ -4,11 +4,8 @@ require "byebug"
 require "roo"
 require 'json'
 
-
 puts "Get all columns of xlsx"
-
 # name of file for example inventory, place it on same level
-
 xlsx = Roo::Spreadsheet.open('./hostnames.xlsx')
 URL = "https://172.31.211.137"
 
@@ -43,7 +40,8 @@ categories.each do |category|
 
   if is_error
     all_categories = `curl -v -k -u admin:WSXQAZ@655#@! --location --request GET "#{URL}/api/categories"`
-    puts "categories registered alread"
+    puts "categoq3e56789i
+-ries registered alread"
     puts "searching appropiate category"
     categories = JSON.parse(all_categories)
 

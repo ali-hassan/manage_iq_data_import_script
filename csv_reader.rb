@@ -5,6 +5,7 @@ require "byebug"
 require 'json'
 
 puts "Get all columns of CSV"
+URL = "https://172.31.211.137"
 
 CSV.foreach("final_version_of_csv.csv").map do |row|
   puts "Row wise #{row}********************"
