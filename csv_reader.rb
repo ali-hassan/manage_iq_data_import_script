@@ -14,7 +14,7 @@ CSV.foreach("final_version_of_csv.csv").map do |row|
     cat_name = col_val
     category_id = nil
     cat_name_val = cat_name.downcase.gsub(/[^0-9A-Za-z]/, '_')
-    response = `curl -v -k -u admin:WSXQAZ@655#@! --location --request POST 'https://172.31.211.137/api/categories' \
+    response = `curl -v -k -u admin:WSXQAZ@655#@! --location --request POST "#{URL}/api/categories" \
                    --header 'Authorization: Basic YWRtaW46V1NYUUFaQDY1NSNAIQ==' \
                    --header 'Content-Type: text/plain'\
                    --data-raw '{
