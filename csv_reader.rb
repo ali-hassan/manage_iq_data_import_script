@@ -5,7 +5,10 @@ require "byebug"
 require 'json'
 
 puts "Get all columns of CSV"
+
 URL = "https://172.31.211.137"
+## The above URL is replaceable for production / staging
+# Please mention the URL above
 
 CSV.foreach("final_version_of_csv.csv").map do |row|
   puts "Row wise #{row}********************"
