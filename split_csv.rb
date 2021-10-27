@@ -6,8 +6,7 @@ lineNum = 0
 file_num = 0
 bytes    = 0
 
-
-filename = 'W:/IN/tangoZ.txt_100.TXT'
+filename = "file#{Time.now.gsub(" ", "_")}.CSV"
 r = File.exist?(filename)
 puts 'File exists =' + r.to_s + ' ' +  filename
 file=File.open(filename,"r")
@@ -37,7 +36,6 @@ file.each{|line|
 
 
 }
-
 ## write leftovers
 file_num += 1
 #puts '__3 File open write FINAL' + file_num.to_s + '  lines ' + lineNum.to_s
