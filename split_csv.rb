@@ -8,13 +8,15 @@ bytes    = 0
 
 filename = "file#{Time.now.gsub(" ", "_")}.CSV"
 r = File.exist?(filename)
+puts "*************"
 puts 'File exists =' + r.to_s + ' ' +  filename
+puts "*************"
 file=File.open(filename,"r")
 line_count = file.readlines.size
 file_size = File.size(filename).to_f / 1024000
+puts "*************"
 puts 'Total lines=' + line_count.to_s + '   size=' + file_size.to_s + ' Mb'
-puts ' '
-
+puts "*************"
 
 file = File.open(filename,"r")
 #puts '1 File open read ' + filename
@@ -40,3 +42,5 @@ file.each{|line|
 file_num += 1
 #puts '__3 File open write FINAL' + file_num.to_s + '  lines ' + lineNum.to_s
 File.open("#{file_num}.txt", 'w') {|f| f.write data.join}
+puts "end"
+puts "*************"
