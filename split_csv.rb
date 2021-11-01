@@ -19,12 +19,12 @@ puts 'Total lines=' + line_count.to_s + '   size=' + file_size.to_s + ' Mb'
 puts "*************"
 
 file = File.open(filename,"r")
+
 #puts '1 File open read ' + filename
 file.each{|line|
   bytes += line.length
   lineNum += 1
   data << line
-
   if bytes > MAX_BYTES  then
     # if lineNum > MAX_LINES  then
     bytes = 0
@@ -34,10 +34,8 @@ file.each{|line|
     data.clear
     lineNum = 0
   end
-
-
-
 }
+
 ## write leftovers
 file_num += 1
 #puts '__3 File open write FINAL' + file_num.to_s + '  lines ' + lineNum.to_s
