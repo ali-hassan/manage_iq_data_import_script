@@ -7,7 +7,7 @@ require 'json'
 puts "Get all columns of xlsx"
 # name of file for example inventory, place it on same level
 xlsx = Roo::Spreadsheet.open('./hostnames.xlsx')
-URL = "https://172.31.211.137"
+URL = Rails.env = "production" ? "https://172.31.211.137" : ""
 
 headers = Hash.new
 xlsx.row(1).each_with_index {|header,i|
