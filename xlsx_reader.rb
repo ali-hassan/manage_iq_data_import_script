@@ -15,6 +15,7 @@ xlsx.row(1).each_with_index {|header,i|
 }
 
 categories = xlsx.sheet(0).row(1)
+# Headers
 # ["Change Control ", "DA/Legacy", "Zone/VLAN", "OS Type", "OS Version", "Environment", "Host Name", "DNS Name", "Domain", "Production IP", "Management IP", "Secondary IP", "Virtual  IP", "ILO IP", "Status", "Function/Service", "Function Types", "Asset Type", "Asset Owner", "Department", "Hardware \nCategory", "Serial Number", "Manfucaturer", "Model", "TP Counter Part", "OSQ"]
 
 categories.each do |category|
